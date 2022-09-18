@@ -1,6 +1,3 @@
-# Improve: adding certificate to activate HTTPS listener:
-# HTTP listener will redirects to the HTTPS listener, which sends traffic to the target group
-
 resource "aws_lb" "this" {
   name                       = "${var.name}-alb"
   internal                   = false
@@ -28,6 +25,7 @@ resource "aws_alb_target_group" "this" {
   }
 }
 
+# HTTP listener will redirects to the HTTPS listener, which sends traffic to the target group
 resource "aws_alb_listener" "http" {
   load_balancer_arn = aws_lb.this.id
   port              = 80

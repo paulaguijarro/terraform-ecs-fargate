@@ -1,7 +1,7 @@
 #  Using a single environment for the time being
 locals {
-  container_port        = 80
   name                  = "test"
+  container_port        = 80
   fargate_cpu           = 256
   fargate_memory        = 512
   host_port             = 80
@@ -9,8 +9,9 @@ locals {
 }
 
 module "vpc" {
-  source = "./modules/vpc"
-  name   = local.name
+  source             = "./modules/vpc"
+  name               = local.name
+  availability_zones = var.availability_zones
 }
 
 module "security-group" {
