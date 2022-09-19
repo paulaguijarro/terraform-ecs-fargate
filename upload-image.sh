@@ -12,7 +12,7 @@ aws ecr get-login-password --region ${REGION} | docker login \
     --username AWS \
     --password-stdin ${ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com
 
-docker build -t ${NAME} .
+docker build -t ${NAME} --platform linux/amd64 .
 docker tag ${NAME}:latest ${ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/${NAME}:latest
 
 docker push ${ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/${NAME}
